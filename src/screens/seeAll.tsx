@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { StyleSheet, Text, View, ScrollView, KeyboardAvoidingView, Image, TouchableOpacity, FlatList, ImageBackground, Modal} from "react-native";
+import { StyleSheet, Text, View, ScrollView, KeyboardAvoidingView, Image, TouchableOpacity, FlatList, ImageBackground, Modal, ActivityIndicator} from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import LinearGradient from "react-native-linear-gradient";
 import { RootStackParamList } from "../../App";
@@ -103,7 +103,13 @@ const SeeAllScreen = ({navigation, route}: SeeAllScreenProps)=>{
             </View>
             <Text style={styles.topText}>About 11,130,000 results for <Text style={[styles.topText, {fontWeight:"700"}]}>COVID New Variant</Text>.</Text>
             <View style={styles.news}>
-                <News data = {news} handleNavigation={()=>navigation.navigate("Detail")}/>
+            {
+                    news ? 
+                    <News data = {news} handleNavigation={(data) => {
+                        navigation.navigate('Detail',{data:data})}}/>
+                        :
+                    <ActivityIndicator size="large" color="#FF3A44" />
+                }
             </View>
             
         </ScrollView>

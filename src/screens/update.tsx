@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { StyleSheet, Text, View, ScrollView, KeyboardAvoidingView, Image, TouchableOpacity, FlatList, ImageBackground, Modal, Platform} from "react-native";
+import { StyleSheet, Text, View, ScrollView, KeyboardAvoidingView, Image, TouchableOpacity, FlatList, ImageBackground, Modal, Platform, ActivityIndicator} from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../App";
 import { Update } from "../components/components";
@@ -22,8 +22,14 @@ const UpdateScreen = ({navigation}: SeeAllScreenProps)=>{
                     <View/>
                 </View>
                 <View>
+                {
+                    headline ? 
                     <Update data = {headline} handleNavigation={(data) => {
-        navigation.navigate('Detail',{data:data})}}/>
+                        navigation.navigate('Detail',{data:data})}}/>
+                        :
+                    <ActivityIndicator size="large" color="#FF3A44" />
+                }
+                    
                 </View>
                     
             </ScrollView>

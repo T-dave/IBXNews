@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { StyleSheet, Text, View, ScrollView, KeyboardAvoidingView, Image, TouchableOpacity, FlatList, ImageBackground,} from "react-native";
+import { StyleSheet, Text, View, ScrollView, KeyboardAvoidingView, Image, TouchableOpacity, FlatList, ImageBackground, ActivityIndicator,} from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../App";
 import { data1, data2, category} from "../components/data";
@@ -14,10 +14,6 @@ const HomeScreen = ({navigation}: HomeScreenProps)=>{
         fetchUser("general");
         fetchHeadline();
     },[])
-    const dateConverter = (date)=>{
-        var day = new Date("2016-01-04 10:34:23");
-        console.log(day.getFullYear())
-    }
     return(
         <View style={styles.container}>
             <ScrollView contentContainerStyle={{flexGrow: 1}}
@@ -40,16 +36,28 @@ const HomeScreen = ({navigation}: HomeScreenProps)=>{
                 </TouchableOpacity>
             </View>
             <View style={{marginVertical:20}}>
-                <Headlines data={headline} handleNavigation={(data) => {
-        navigation.navigate('Detail',{data:data})}}/>
+                {
+                    headline ? 
+                    <Headlines data={headline} handleNavigation={(data) => {
+                        navigation.navigate('Detail',{data:data})}}/>
+                        :
+                    <ActivityIndicator size="large" color="#FF3A44" />
+                }
+                
             </View>
             <View>
                 <Category category={category} style={{paddingHorizontal:20}}/>
             </View>
             <View style={styles.news}>
-                <News data = {news} handleNavigation={(data) => {
-        navigation.navigate('Detail',{data:data});
-      }}/>
+            {
+                    news ? 
+                    <News data = {news} handleNavigation={(data) => {
+                        navigation.navigate('Detail',{data:data});
+                      }}/>
+                        :
+                    <ActivityIndicator size="large" color="#FF3A44" />
+                }
+                
             </View>
             
         </ScrollView>
@@ -59,10 +67,10 @@ const HomeScreen = ({navigation}: HomeScreenProps)=>{
                         <Image style={{width: 24, height: 24, marginBottom:3}} source={require("../../assets/homeRed.png")} resizeMode="center"/>
                         <Text style={[styles.bottomText, {color:"#2E0505"}]}>Home</Text>
                     </View>
-                    <TouchableOpacity style={{alignItems:"center"}} onPress={()=>dateConverter(news[0].publishedAt)}>
+                    <View style={{alignItems:"center"}}>
                         <Image style={{width: 24, height: 24, marginBottom:3}} source={require("../../assets/favorite.png")} resizeMode="center"/>
                         <Text style={styles.bottomText}>Favorite</Text>
-                    </TouchableOpacity>
+                    </View>
                     <View style={{alignItems:"center"}}>
                         <Image style={{width: 24, height: 24, marginBottom:3}} source={require("../../assets/profile.png")} resizeMode="center"/>
                         <Text style={styles.bottomText}>Profile</Text>

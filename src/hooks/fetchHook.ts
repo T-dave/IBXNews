@@ -18,7 +18,6 @@ export default function api(){
     const categoryFetch = async(category:string)=>{
         await setCategory(category);
         fetchUser(category);
-        console.log("Hii")
     }
     const fetchUser = async (category:string) => {
         const configurationObject = {
@@ -26,7 +25,7 @@ export default function api(){
         url: `${baseUrl}top-headlines?category=${category}&apiKey=${key}`,
         };
         const response = await axios(configurationObject);
-        dispatch(addData(response.data.articles))
+        await dispatch(addData(response.data.articles))
     };
     const fetchHeadline = async () => {
         const configurationObject = {
@@ -34,7 +33,7 @@ export default function api(){
         url: `${baseUrl}top-headlines?country=us&apiKey=${key}`,
         };
         const response = await axios(configurationObject);
-        dispatch(addHeadline(response.data.articles))
+        await dispatch(addHeadline(response.data.articles))
     };
     const dispatch = useDispatch()
 

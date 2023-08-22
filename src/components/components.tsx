@@ -15,7 +15,8 @@ type NewsProp = {
         description:string,
         detail:string,
         urlToImage:string,
-        image:any
+        publishedAt:string,
+        image:string
     }[],
     handleNavigation:any
 }
@@ -40,6 +41,14 @@ export const Noti = ()=>{
       
     )
 }
+export const Love = ()=>{
+    return(
+        <LinearGradient start={{x: 0, y: 0}} end={{x: 1, y: 0}} colors={["#FF3A44", "#FF8086"]} style={styles.noti}>
+             <Image style={{width:40, height:40}} source={require("../../assets/love2.png")} resizeMode="center"/>
+      </LinearGradient>
+      
+    )
+}
 export const Headlines = ({data, handleNavigation}:NewsProp)=>{
     return(
         <FlatList
@@ -50,7 +59,7 @@ export const Headlines = ({data, handleNavigation}:NewsProp)=>{
         renderItem={({item}) => {
             return(
                 <TouchableOpacity onPress={()=>handleNavigation(item)}>
-                    <ImageBackground source={item.image} style={styles.image1} imageStyle={{ borderRadius: 8}}>
+                    <ImageBackground source={ { uri: item.urlToImage ? item.urlToImage : "https://picsum.photos/id/237/200/300" } } style={styles.image1} imageStyle={{ borderRadius: 8}}>
                         <LinearGradient colors={["rgba(98, 98, 98, 0.35)", "#000"]}  style={styles.imageView}>
                             <View></View>
                             <View>
@@ -144,14 +153,14 @@ export const News = ({data, handleNavigation}:NewsProp)=>{
         renderItem={({item}) => {
             return(
                 <TouchableOpacity onPress={()=>handleNavigation(item)}>
-                    <ImageBackground source={{ uri: item.urlToImage }} style={styles.image2} imageStyle={{ borderRadius: 8}} >
+                    <ImageBackground source={{ uri: item.urlToImage ? item.urlToImage : "https://picsum.photos/id/237/200/300" }} style={styles.image2} imageStyle={{ borderRadius: 8}} >
                         <LinearGradient colors={["rgba(98, 98, 98, 0.35)", "#000"]} style={[styles.imageView, {margin: 0}]}>
                             <View>
                                 <Text style={styles.headlineText}>{item.title}</Text>
                             </View>
                             <View style={styles.imageBottom}>
                                 <Text style={styles.authorText}>by {item.author}</Text>
-                                <Text style={styles.followupText}>Sunday, 9 May 2021</Text>
+                                <Text style={styles.followupText}>{item.publishedAt.substring(0,10)}</Text>
                             </View>
                             
                         </LinearGradient>
@@ -204,10 +213,10 @@ export const Update = ({data, handleNavigation}:NewsProp)=>{
             return(
                 <View style={{marginHorizontal:20, marginBottom:15}}>
                     <TouchableOpacity onPress={()=>handleNavigation(item)}>
-                        <Image style={styles.image3} source={item.image} resizeMode="center"/>
+                        <Image style={styles.image3} source={ { uri: item.urlToImage ? item.urlToImage : "https://picsum.photos/id/237/200/300" }} resizeMode="center"/>
                     </TouchableOpacity>    
                     <View style={styles.updateTexts}>
-                        <Text style={styles.update1}>Sunday, 9 May 2021</Text>
+                        <Text style={styles.update1}>{item.publishedAt.substring(0,10)}</Text>
                         <Text style={styles.update2}>{item.title}</Text>
                             <Text style={styles.update3} ellipsizeMode="tail" numberOfLines={4}>{item.detail}</Text>
                             <TouchableOpacity style={{width:"100%", alignItems:"flex-end"}} onPress={()=>handleNavigation(item)}>

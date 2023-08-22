@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, ScrollView, KeyboardAvoidingView, Image, Toucha
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import LinearGradient from "react-native-linear-gradient";
 import { RootStackParamList } from "../../App";
+import { Love } from "../components/components";
 
 
 
@@ -15,13 +16,13 @@ const DetailScreen = ({navigation, route}: SeeAllScreenProps)=>{
         <View style={{flex:1}}>
             <ScrollView contentContainerStyle={{flexGrow: 1}}
             style={styles.container} showsVerticalScrollIndicator={false}>
-                <ImageBackground source={{ uri: route.params.data.urlToImage }} style={styles.image1}>
+                <ImageBackground source={{ uri: route.params.data.urlToImage ? route.params.data.urlToImage: "https://picsum.photos/id/237/200/300" }} style={styles.image1}>
                     <TouchableOpacity style={styles.backView} onPress={()=>navigation.goBack()}>
                         <Image style={{width: 32, height: 32,}} source={require("../../assets/back.png")} resizeMode="center"/>
                     </TouchableOpacity>
                     <View style={styles.blurView}>
-                        <ImageBackground style={styles.blur} source={{ uri: route.params.data.urlToImage }} blurRadius={200} imageStyle={{borderRadius:16}}>
-                            <Text style={[styles.text1, {marginBottom:10}]}>Sunday, 9 May 2021</Text>
+                        <ImageBackground style={styles.blur} source={{ uri: route.params.data.urlToImage ? route.params.data.urlToImage: "https://picsum.photos/id/237/200/300" }} blurRadius={200} imageStyle={{borderRadius:16}}>
+                            <Text style={[styles.text1, {marginBottom:10}]}>{route.params.data.publishedAt.substring(0,10)}</Text>
                             <Text style={[styles.text2, {marginBottom:6}]}>{route.params.data.title}</Text>
                             <Text style={styles.text3}>Published by {route.params.data.author}</Text>
                         </ImageBackground>
@@ -36,7 +37,7 @@ const DetailScreen = ({navigation, route}: SeeAllScreenProps)=>{
             </ScrollView>
             <View style={styles.popUp}>
                 <TouchableOpacity >
-                    <Image style={{width: 40, height: 40}} source={require("../../assets/love.png")} resizeMode="center"/>
+                    <Love />
                 </TouchableOpacity>
             </View>
         </View>
