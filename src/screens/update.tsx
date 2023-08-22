@@ -7,7 +7,7 @@ import { data1, data2, category} from "../components/data";
 import api from "../hooks/fetchHook"
 
 type SeeAllScreenProps = NativeStackScreenProps<RootStackParamList, 'Update'>;
-completed the front end of the project
+
 const UpdateScreen = ({navigation}: SeeAllScreenProps)=>{
     const {headline} = api();
     return(
