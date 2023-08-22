@@ -4,7 +4,7 @@ import { store } from './src/Redux/store';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './src/screens/home';
-import SeeAllScreen from './src/screens/seeAll';
+import SeeAllScreenn from './src/screens/seeAll';
 import DetailScreen from './src/screens/detail';
 import UpdateScreen from './src/screens/update';
 
@@ -22,11 +22,10 @@ function App() {
         <Stack.Navigator
         screenOptions={{
           headerShown: false
-        }}
-        >
+        }}>
           
             <Stack.Screen name="Home" component={HomeScreen} />
-            <Stack.Screen name="SeeAll" component={SeeAllScreen} />
+            <Stack.Screen name="SeeAll" component={SeeAllScreenn} />
             <Stack.Screen name="Detail" component={DetailScreen} />
             <Stack.Screen name="Update" component={UpdateScreen} />
         
