@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import type { RootState } from "../Redux/store";
 import { useSelector, useDispatch } from 'react-redux'
-import { addData } from "../Redux/slice/news";
+import { addData } from "../Redux/slice/new";
 import { addHeadline } from "../Redux/slice/headline";
 import axios from 'axios';
 
