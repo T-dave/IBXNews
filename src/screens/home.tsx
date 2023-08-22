@@ -7,7 +7,7 @@ import { Noti, Search, Headlines, Category, News } from "../components/component
 import api from "../hooks/fetchHook"
 
 type HomeScreenProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
-
+completed the API linking
 const HomeScreen = ({navigation}: HomeScreenProps)=>{
     const {news, headline, categoryType, fetchUser, fetchHeadline, categoryFetch} = api();
     useEffect(()=>{
