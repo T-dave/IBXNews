@@ -7,7 +7,7 @@ export const store = configureStore({
     news: newsReducer,
     headline:headlineReducer
   },
-})
+})set up redux for proper state management
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>
