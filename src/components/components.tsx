@@ -59,7 +59,7 @@ export const Headlines = ({data, handleNavigation}:NewsProp)=>{
         renderItem={({item}) => {
             return(
                 <TouchableOpacity onPress={()=>handleNavigation(item)}>
-                    <ImageBackground source={ { uri: item.urlToImage ? item.urlToImage : "https://picsum.photos/id/237/200/300" } } style={styles.image1} imageStyle={{ borderRadius: 8}}>
+                    <ImageBackground source={ { uri: item.urlToImage ? item.urlToImage : Image.resolveAssetSource(require('../../assets/grey.png')).uri } } style={styles.image1} imageStyle={{ borderRadius: 8}}>
                         <LinearGradient colors={["rgba(98, 98, 98, 0.35)", "#000"]}  style={styles.imageView}>
                             <View></View>
                             <View>
@@ -153,7 +153,7 @@ export const News = ({data, handleNavigation}:NewsProp)=>{
         renderItem={({item}) => {
             return(
                 <TouchableOpacity onPress={()=>handleNavigation(item)}>
-                    <ImageBackground source={{ uri: item.urlToImage ? item.urlToImage : "https://picsum.photos/id/237/200/300" }} style={styles.image2} imageStyle={{ borderRadius: 8}} >
+                    <ImageBackground source={{ uri: item.urlToImage ? item.urlToImage : Image.resolveAssetSource(require('../../assets/grey.png')).uri }} style={styles.image2} imageStyle={{ borderRadius: 8}} >
                         <LinearGradient colors={["rgba(98, 98, 98, 0.35)", "#000"]} style={[styles.imageView, {margin: 0}]}>
                             <View>
                                 <Text style={styles.headlineText}>{item.title}</Text>
@@ -213,7 +213,7 @@ export const Update = ({data, handleNavigation}:NewsProp)=>{
             return(
                 <View style={{marginHorizontal:20, marginBottom:15}}>
                     <TouchableOpacity onPress={()=>handleNavigation(item)}>
-                        <Image style={styles.image3} source={ { uri: item.urlToImage ? item.urlToImage : "https://picsum.photos/id/237/200/300" }} resizeMode="center"/>
+                        <Image style={styles.image3} source={ { uri: item.urlToImage ? item.urlToImage : Image.resolveAssetSource(require('../../assets/grey.png')).uri }} resizeMode="center"/>
                     </TouchableOpacity>    
                     <View style={styles.updateTexts}>
                         <Text style={styles.update1}>{item.publishedAt.substring(0,10)}</Text>
